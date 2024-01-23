@@ -29,7 +29,7 @@ export class HeaderComponent {
     },
     {
       label: 'Admin',
-      link: '/admin',
+      link: '/login',
     },
     
 

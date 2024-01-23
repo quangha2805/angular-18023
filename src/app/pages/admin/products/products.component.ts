@@ -4,6 +4,7 @@ import { ProductAdmin } from '../../../types/Product';
 import { ProductService } from '../../../services/product.service';
 import { RouterLink } from '@angular/router'; // import service
 import { SidebarComponent } from '../../../components/sidebar/sidebar.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,8 @@ import { SidebarComponent } from '../../../components/sidebar/sidebar.component'
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  productService = inject(ProductService); // inject vao bien
+  productService = inject(ProductService);
+  toastrSevice = inject(ToastrService) // inject vao bien
   productList: ProductAdmin[] = [];
   ngOnInit(): void {
     this.productService
@@ -32,6 +34,7 @@ export class ProductsComponent {
             (product) => product.id !== id
           ))
         );
+        this.toastrSevice.success('Successfully deleted', "Success");
     }
   }
   

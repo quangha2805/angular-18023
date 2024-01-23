@@ -10,18 +10,24 @@ export class UserService {
   private apiUrl = 'https://eco-websv.onrender.com/Users';
 
   constructor(private http: HttpClient) {}
-  GetUserbyCode(id:any){
-    return this.http.get(this.apiUrl+'/'+id);
+
+  getUserByCode(id: any): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
-  RegisterUser(data:User):Observable<User>{
-    return this.http.post<User>(this.apiUrl, data)
+
+  RegisterUser(data: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, data);
   }
-  isloggedin(){
-    return sessionStorage.getItem('email')!=null;
+
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem('email') !== null;
   }
+
   getUserByEmail(email: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}?email=${email}`);
   }
-  
 
+  getRole(): string {
+    return sessionStorage.getItem('role') || '';
+  }
 }

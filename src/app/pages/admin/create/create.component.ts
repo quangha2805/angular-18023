@@ -1,68 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { FormsModule, FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Category } from '../../../types/Category';
+import { CategoryService } from '../../../services/category.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
-import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ToastModule, CommonModule,],
+  imports: [CommonModule, FormsModule,ReactiveFormsModule],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.css',
-  providers: [MessageService],
+  styleUrl: './create.component.css'
 })
-export class CreateComponent {
-  id!: string;
-  form: FormGroup;
+export class CreateComponent implements OnInit  {
+  form!:FormGroup;
+  cateList: Category[] | any[] = []; 
   constructor(
     private productService: ProductService, 
-    private formBuilder: FormBuilder,
-    private messageService: MessageService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-  ){
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required],
+    private cateService: 
+    CategoryService, 
+    private toastrService:ToastrService, 
+    private fb:FormBuilder,
+    private router : Router){}
+    ngOnInit():void {
+    this.getAllCate()
+    this.form = this.fb.group({
+      title: ['',[Validators.required, Validators.minLength(3)]],
+      price: [0, Validators.min(1)],
       description: ['', Validators.required],
-      price: ['', Validators.required],
-      image: ['', Validators.required],
       category: ['', Validators.required],
+      image:['', Validators.required]
+    });
+  }
+
+
+
+  onSubmit(): void {
+   if(this.form.valid){
+      this.productService.createProductAdmin(this.form.value).subscribe((res: any) => {
+       if (res) {
+         this.toastrService.success('Successfully created', "Success");
+         this.router.navigate(['admin/products']);
+       } else {
+         this.toastrService.error('Error creating');
+       }
+     })
+   }
+  }
+
+  getAllCate():void{
+    this.cateService.getAllCate().subscribe(cates => {
+      this.cateList = cates
     })
-  }
-  ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params['id'];
-    if (this.id) {
-      this.productService.getProductById(this.id).subscribe((data) => {
-        console.log(this.form.status);
-        this.form.patchValue({
-          category: data.category,
-          title: data.title,
-          price: data.price,
-          image: data.image,
-          description: data.description,
-        });
-      });
-    }
-  }
-  onSubmit(): void{
-    if (this.form.invalid) {
-      return;
-    }
-    const data = this.form.value;
-    if(data){
-       this.productService
-      .createProductAdmin(data)
-      .subscribe((data) => {
-        this.messageService.add({
-          severity: 'Successfully',
-          summary: 'Successfully',
-          detail: 'Add Successfully',
-        });
-        this.router.navigateByUrl('admin/products');
-      });
-    }
   }
 }

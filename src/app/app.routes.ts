@@ -5,9 +5,12 @@ import { ProductsComponent } from './pages/admin/products/products.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { CreateComponent } from './pages/admin/create/create.component';
 import { EditComponent } from './pages/admin/edit/edit.component';
-import { LoginComponent } from './pages/admin/login/login.component';
-import { RegisterComponent } from './pages/admin/register/register.component';
-import { adminGuard } from './guards/admin.guard';
+import { LoginComponent } from '../app/pages/login/login.component';
+import { RegisterComponent } from '../app/pages/register/register.component';
+import { CategoriesComponent } from '../app/pages/admin/Categories/categoryList/categories.component';
+import { CreateCateComponent } from './pages/admin/Categories/create-cate/create-cate.component';
+import { EditCateComponent } from './pages/admin/Categories/edit-cate/edit-cate.component';
+import { AdminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
 
@@ -16,7 +19,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',
-    canActivate: [adminGuard],
+    canActivate: [AdminGuard],
     component: AdminComponent,
     children: [
       { path: 'products', component: ProductsComponent },
@@ -25,7 +28,16 @@ export const routes: Routes = [
       },
       {
         path:'update/:id', component:EditComponent
-      }
+      },
+      {
+        path:'categories', component:CategoriesComponent
+      },
+      {
+        path:'createcate', component:CreateCateComponent
+      },
+      {
+        path:'editcate/:id', component:EditCateComponent
+      },
     ],
 
   },

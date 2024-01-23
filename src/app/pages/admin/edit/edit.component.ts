@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../../services/product.service';
+import { Category } from '../../../types/Category';
+import { CategoryService } from '../../../services/category.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ToastModule, CommonModule,],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule,],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
-  providers: [MessageService],
 })
 export class EditComponent {
   id!: string;
   form: FormGroup;
+   cateList: Category[] | any[] = []; 
   constructor(
     private productService: ProductService, 
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private cateService: CategoryService,
+    private toastSevice: ToastrService,
   ){
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
@@ -33,6 +35,7 @@ export class EditComponent {
     })
   }
   ngOnInit() {
+    this.getAllCate();
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.productService.getProductById(this.id).subscribe((data) => {
@@ -56,13 +59,14 @@ export class EditComponent {
        this.productService
       .updateProductAdmin(this.id, data)
       .subscribe((data) => {
-        this.messageService.add({
-          severity: 'Successfully',
-          summary: 'Successfully',
-          detail: 'Update Successfully',
-        });
+        this.toastSevice.success('Succeesfully Updated',"Success");
         this.router.navigateByUrl('admin/products');
       });
     }
+  }
+  getAllCate():void{
+    this.cateService.getAllCate().subscribe(cates => {
+      this.cateList = cates
+    })
   }
 }
