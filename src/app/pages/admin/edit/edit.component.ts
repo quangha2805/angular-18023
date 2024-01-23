@@ -59,7 +59,7 @@ export class EditComponent {
         this.messageService.add({
           severity: 'Successfully',
           summary: 'Successfully',
-          detail: 'Add Successfully',
+          detail: 'Update Successfully',
         });
         this.router.navigateByUrl('admin/products');
       });

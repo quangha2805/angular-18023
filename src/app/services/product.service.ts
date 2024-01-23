@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   // call api
-  apiAdminUrl = 'https://65a66dff74cf4207b4f00144.mockapi.io/Products'; // khai bao apiUrl
+  apiAdminUrl = 'https://eco-websv.onrender.com/Products'; // khai bao apiUrl
 
   http = inject(HttpClient); // inject bien http
   constructor() {}
