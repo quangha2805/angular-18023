@@ -10,6 +10,9 @@ export class UserService {
   private apiUrl = 'https://eco-websv.onrender.com/Users';
 
   constructor(private http: HttpClient) {}
+  GetUserbyCode(id:any){
+    return this.http.get(this.apiUrl+'/'+id);
+  }
   RegisterUser(data:User):Observable<User>{
     return this.http.post<User>(this.apiUrl, data)
   }
@@ -19,4 +22,6 @@ export class UserService {
   getUserByEmail(email: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}?email=${email}`);
   }
+  
+
 }

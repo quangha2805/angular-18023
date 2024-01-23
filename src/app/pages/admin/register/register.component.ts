@@ -42,5 +42,4 @@ export class RegisterComponent implements OnInit {
       this.toast.error('Please enter invalid');
      }
   }
-
 }
