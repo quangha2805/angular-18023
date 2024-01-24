@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { ProductService } from '../../../services/product.service';
-import { Category } from '../../../types/Category';
-import { CategoryService } from '../../../services/category.service';
+import { ProductService } from '../../../../services/product.service';
+import { Category } from '../../../../types/Category';
+import { CategoryService } from '../../../../services/category.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({

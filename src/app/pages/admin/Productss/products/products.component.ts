@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { ProductAdmin } from '../../../types/Product';
-import { ProductService } from '../../../services/product.service';
+import { ProductAdmin } from '../../../../types/Product';
+import { ProductService } from '../../../../services/product.service';
 import { RouterLink } from '@angular/router'; // import service
-import { SidebarComponent } from '../../../components/sidebar/sidebar.component';
+import { SidebarComponent } from '../../../../components/sidebar/sidebar.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

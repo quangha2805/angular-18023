@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, FormGroup,Validators } from '@angular/forms';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from '../../../../services/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Category } from '../../../types/Category';
-import { CategoryService } from '../../../services/category.service';
+import { Category } from '../../../../types/Category';
+import { CategoryService } from '../../../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 

@@ -1,15 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 
-import { ProductsComponent } from './pages/admin/products/products.component';
+import { ProductsComponent } from './pages/admin/Productss/products/products.component';
 import { AdminComponent } from './layouts/admin/admin.component';
-import { CreateComponent } from './pages/admin/create/create.component';
-import { EditComponent } from './pages/admin/edit/edit.component';
+import { CreateComponent } from './pages/admin/Productss/create/create.component';
+import { EditComponent } from './pages/admin/Productss/edit/edit.component';
 import { LoginComponent } from '../app/pages/login/login.component';
 import { RegisterComponent } from '../app/pages/register/register.component';
 import { CategoriesComponent } from '../app/pages/admin/Categories/categoryList/categories.component';
 import { CreateCateComponent } from './pages/admin/Categories/create-cate/create-cate.component';
 import { EditCateComponent } from './pages/admin/Categories/edit-cate/edit-cate.component';
+import { UserlistComponent } from './pages/admin/Menber/userlist/userlist.component';
+import { CreateUserComponent } from './pages/admin/Menber/createuser/createuser.component';
+import { EditUserComponent } from './pages/admin/Menber/edituser/edituser.component';
 import { AdminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
@@ -38,6 +41,15 @@ export const routes: Routes = [
       {
         path:'editcate/:id', component:EditCateComponent
       },
+      {
+        path:'users', component:UserlistComponent
+      },
+      {
+        path:'createuser', component:CreateUserComponent
+      },
+      {
+        path:'edituser/:id', component:EditUserComponent
+      }
     ],
 
   },

@@ -30,7 +30,7 @@ export class CategoriesComponent {
           (category) => category.id !== id
        )) 
       )
-      this.toastrService.success('Successfully deleted, Success')
+      this.toastrService.success("Successfully deleted", "Success")
     }
   }
 }

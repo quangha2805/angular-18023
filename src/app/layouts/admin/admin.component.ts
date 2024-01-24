@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
-import { ProductsComponent } from '../../pages/admin/products/products.component';
-import { CreateComponent } from '../../pages/admin/create/create.component';
+import { ProductsComponent } from '../../pages/admin/Productss/products/products.component';
+import { CreateComponent } from '../../pages/admin/Productss/create/create.component';
 
 @Component({
   selector: 'app-admin',
