@@ -29,7 +29,7 @@ export class LoginComponent {
     const { email, password } = this.loginform.value;
     this.userService.getUserByEmail(email as string).subscribe({
       next: (response) => {
-        const user = response[0];
+        const user = response[0]; // TÀI KHOẢN ADMIN => EMAIL: haph30297@gmail.com ; PASSWORD: 12345
         if (user && user.password === password) {
           sessionStorage.setItem('email', email as string);
           sessionStorage.setItem('role', user.role);

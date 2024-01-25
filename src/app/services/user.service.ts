@@ -42,4 +42,8 @@ export class UserService {
   updateUser(id:string, user:User):Observable<User>{
     return this.http.put<User>(`${this.apiUrl}/${id}`, user);
   }
+  logout() {
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('role');
+  }
 }
