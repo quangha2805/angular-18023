@@ -30,16 +30,16 @@ export class UserService {
   getUserList(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl); //axios.get(apiUrl)
   }
-  getUserById(id:string):Observable<User>{
-    return this.http.get<User>(`${this.apiUrl}/${id}`)
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
-  deleteUser(id:string):Observable<User>{
+  deleteUser(id: string): Observable<User> {
     return this.http.delete<User>(`${this.apiUrl}/${id}`);
   }
-  createUser(data:User):Observable<User>{
-    return this.http.post<User>(this.apiUrl, data)
+  createUser(data: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, data);
   }
-  updateUser(id:string, user:User):Observable<User>{
+  updateUser(id: string, user: User): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/${id}`, user);
   }
   logout() {

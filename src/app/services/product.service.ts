@@ -17,19 +17,19 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiAdminUrl); //axios.get(apiUrl)
   }
 
-  getProductListAdmin(): Observable<ProductAdmin[]> {
-    return this.http.get<ProductAdmin[]>(this.apiAdminUrl); //axios.get(apiUrl)
+  getProductListAdmin(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiAdminUrl); //axios.get(apiUrl)
   }
-  getProductById(id:string):Observable<Product>{
-    return this.http.get<Product>(`${this.apiAdminUrl}/${id}`)
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiAdminUrl}/${id}`);
   }
-  deleteProductAdmin(id:string):Observable<Product>{
+  deleteProductAdmin(id: number): Observable<Product> {
     return this.http.delete<Product>(`${this.apiAdminUrl}/${id}`);
   }
-  createProductAdmin(data:Product):Observable<Product>{
-    return this.http.post<Product>(this.apiAdminUrl, data)
+  createProductAdmin(data: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiAdminUrl, data);
   }
-  updateProductAdmin(id:string, product:Product):Observable<Product>{
+  updateProductAdmin(id: string, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiAdminUrl}/${id}`, product);
   }
 }
